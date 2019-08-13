@@ -1,0 +1,84 @@
+<hello name="{{ name }}"></hello>
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit(lform.value)" #lform="ngForm">
+<h3>Create Employee</h3>
+<table>
+  <tr>
+  
+    <td>FullName</td>
+   
+    <td>
+      <input id="fullName" formControlName="fullName" type="text">
+             <p [ngClass]="{'has-error':employeeForm.get('fullName').errors &&(employeeForm.get('fullName').touched || employeeForm.get('fullName').dirty)}"></p>
+            <span *ngIf="employeeForm.get('fullName').errors &&(employeeForm.get('fullName').touched || employeeForm.get('fullName').dirty)">
+                  <span *ngIf="employeeForm.get('fullName').errors.required">
+                      FullName is required
+                  </span>
+                  <span *ngIf="employeeForm.get('fullName').errors.minlength || employeeForm.get('fullName').errors.maxlenght">
+                     Full Name must be greater than 2 characters and less than 10 characters.
+                  </span>
+            </span>
+
+    </td>
+   
+  </tr>
+
+  <tr>
+    <td>Email</td>
+    <td>
+      <input id="email" formControlName="email" type="text">
+            <p [ngClass]="{'has-error':employeeForm.get('email').errors &&(employeeForm.get('email').touched || employeeForm.get('email').dirty)}">
+              
+            </p>
+            <span *ngIf="employeeForm.get('email').errors &&(employeeForm.get('email').touched || employeeForm.get('email').dirty)">
+                  <span *ngIf="employeeForm.get('email').errors.required">
+                      Email is required
+                  </span>
+                  <span *ngIf="employeeForm.get('email').errors.pattern">
+                     Email is in proper format
+                  </span>
+            </span>
+    </td>
+  </tr>
+
+    
+  <tr>
+
+    <td>skills
+      
+    </td>
+    <td>
+      <input id="skillName" formControlName="skillName" type="text">
+      <p [ngClass]="{'has-error':employeeForm.get('skillName').errors &&(employeeForm.get('skillName').touched || employeeForm.get('skillName').dirty)}">
+              
+            </p>
+            <span *ngIf="employeeForm.get('skillName').errors &&(employeeForm.get('skillName').touched || employeeForm.get('skillName').dirty)">
+                  <span *ngIf="employeeForm.get('skillName').errors.required">
+                      SkillName is required
+                  </span>
+                  
+            </span>
+    </td>
+
+    
+
+
+  </tr>
+  <tr> 
+    <td>Experience</td>
+    <td>
+      <input type="text" formControlName="experienceInYears" >
+      <p [ngClass]="{'has-error':employeeForm.get('experienceInYears').errors &&(employeeForm.get('experienceInYears').touched || employeeForm.get('experienceInYears').dirty)}">
+      <span *ngIf="employeeForm.get('experienceInYears').touched || employeeForm.get('experienceInYears').dirty">
+            <span *ngIf="employeeForm.get('experienceInYears').errors?.required">
+                Experience is required
+            </span>
+            
+
+      </span>
+    </td>
+  </tr>
+  <tr>
+    <button type="submit" [disabled]="lform.invalid">Submit</button>
+  </tr>
+</table>
+</form>
